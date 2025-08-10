@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
-import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 
 // https://vite.dev/config/
@@ -11,15 +10,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(), 
-      tailwindcss(),
-      ...(isLibrary ? [dts({ 
-        entryRoot: 'src',
-        include: ['src/**/*'],
-        exclude: ['src/main.tsx', 'src/App.tsx', '**/*.test.*', '**/*.spec.*'],
-        insertTypesEntry: true,
-        rollupTypes: true,
-        copyDtsFiles: true
-      })] : [])
+      tailwindcss()
     ],
     ...(isLibrary ? {
       build: {

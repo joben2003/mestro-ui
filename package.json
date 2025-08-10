@@ -11,7 +11,10 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/index.css"
+    "./styles": {
+      "import": "./dist/index.css",
+      "types": "./dist/styles.d.ts"
+    }
   },
   "files": [
     "dist",
@@ -20,7 +23,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:lib": "vite build --mode library && npx tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx react-jsx --moduleResolution bundler --module ESNext --target ES2022",
+    "build:lib": "vite build --mode library && npx tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist --jsx react-jsx --moduleResolution bundler --module ESNext --target ES2022 && cp src/styles.d.ts dist/",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepublishOnly": "npm run build:lib"
